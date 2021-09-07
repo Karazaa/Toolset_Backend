@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Toolset_Backend.Controllers
@@ -12,9 +9,13 @@ namespace Toolset_Backend.Controllers
     public class ExamplePostController : ControllerBase
     {
         [HttpPost]
-        public string Post()
+        public async Task<byte[]> Post()
         {
-            return "Example Post Response";
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                await Request.Body.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
     }
 }

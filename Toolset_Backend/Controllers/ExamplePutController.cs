@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Toolset_Backend.Controllers
 {
@@ -12,9 +9,13 @@ namespace Toolset_Backend.Controllers
     public class ExamplePutController : ControllerBase
     {
         [HttpPut]
-        public string Put()
+        public async Task<byte[]> Put()
         {
-            return "Example Put Response";
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                await Request.Body.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
     }
 }
