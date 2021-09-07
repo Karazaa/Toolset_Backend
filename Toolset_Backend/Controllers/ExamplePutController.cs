@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.IO;
 
@@ -9,13 +10,9 @@ namespace Toolset_Backend.Controllers
     public class ExamplePutController : ControllerBase
     {
         [HttpPut]
-        public async Task<byte[]> Put()
+        public async Task Put()
         {
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                await Request.Body.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
-            }
+            await Request.Body.CopyToAsync(Response.Body);
         }
     }
 }

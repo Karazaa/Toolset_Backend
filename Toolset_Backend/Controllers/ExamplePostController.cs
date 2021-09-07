@@ -9,13 +9,9 @@ namespace Toolset_Backend.Controllers
     public class ExamplePostController : ControllerBase
     {
         [HttpPost]
-        public async Task<byte[]> Post()
+        public async Task Post()
         {
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                await Request.Body.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
-            }
+            await Request.Body.CopyToAsync(Response.Body);
         }
     }
 }
