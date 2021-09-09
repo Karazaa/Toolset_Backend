@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <None Remove="Controllers\ExampleGetController.cs~RF22d46922.TMP" />
+    <None Remove="Controllers\ExampleHeadController.cs~RFa6ffcaf.TMP" />
+    <None Remove="Controllers\ExampleOptionsController.cs~RFa75c49b.TMP" />
+    <None Remove="Controllers\ExampleOptionsController.cs~RFa797e57.TMP" />
+    <None Remove="Controllers\ExamplePostController.cs~RFa7232f8.TMP" />
     <None Remove="Controllers\ExamplePutController.cs~RFa015fe.TMP" />
   </ItemGroup>
 

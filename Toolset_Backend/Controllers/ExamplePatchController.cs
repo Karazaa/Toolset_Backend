@@ -5,10 +5,10 @@ namespace Toolset_Backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ExamplePutController : ControllerBase
+    public class ExamplePatchController : ControllerBase
     {
-        [HttpPut]
-        public async Task Put()
+        [HttpPatch]
+        public async Task Patch()
         {
             await Request.Body.CopyToAsync(Response.Body);
         }
