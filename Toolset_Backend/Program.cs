@@ -11,9 +11,30 @@ namespace Toolset_Backend
 {
     public class Program
     {
-        public static void Main(string[] args)
+        private static IHost m_host;
+
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            await Startup(args);
+        }
+
+        public static async Task Startup(string[] args)
+        {
+            if (m_host == null)
+            {
+                m_host = CreateHostBuilder(args).Build();
+                await m_host.StartAsync();
+            }
+        }
+
+        public static async Task Shutdown()
+        {
+            if (m_host != null)
+            {
+                await m_host.StopAsync();
+                m_host.Dispose();
+                m_host = null;
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
